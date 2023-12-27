@@ -1,16 +1,24 @@
+import React from "react";
 import style from "./Lista.module.scss";
 import Item from "./Item";
 import { ITarefa } from "../../types/tarefas";
 
-function Lista({ tarefas }: { tarefas: Array<ITarefa> }) {
-  /**tarefas = [...tarefas, {tarefa: "Estudar estado", tempo: "05:00:00"}]**/
+interface Props {
+  tarefas: ITarefa[];
+  seleccionaTarefa: (tarefaSeleccionada: ITarefa) => void;
+}
 
+function Lista({ tarefas, seleccionaTarefa }: Props) {
   return (
     <aside className={style.listaTarefas}>
       <h2>Estudos do dia</h2>
       <ul>
-        {tarefas.map((item, index) => (
-          <Item key={index} {...item} />
+        {tarefas.map((item) => (
+          <Item
+            seleccionaTarefa={seleccionaTarefa}
+            key={item.id} // Corregido el acceso al id
+            {...item}
+          />
         ))}
       </ul>
     </aside>
@@ -20,7 +28,12 @@ function Lista({ tarefas }: { tarefas: Array<ITarefa> }) {
 export default Lista;
 
 
-{  /**Este codigo antes era colado en el h2 >>
+
+{ 
+  /**  /**tarefas = [...tarefas, {tarefa: "Estudar estado", tempo: "05:00:00"}]**/
+ /** { tarefas: Array<ITarefa> })  */
+  
+  /**Este codigo antes era colado en el h2 >>
 onClick={() => setTarefas([...tarefas, { tarefa: "Estudar estado", tempo: "05:00:00" }])} */
     
     /**   const tarefas = [{

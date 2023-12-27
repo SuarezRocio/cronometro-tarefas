@@ -3,7 +3,8 @@ import style from "./Botao.module.scss"
  
 
 class Botao extends React.Component<{
-    type?: "button" | "submit" | "reset" | undefined
+    type?: "button" | "submit" | "reset" | undefined,
+    onClick?: () => void
 }>{
       /*const estaAtivo = false;
         const backgroundColor = estaAtivo ? "green" : "red"
@@ -13,9 +14,9 @@ class Botao extends React.Component<{
         render() { 
           /*  const { type = "button" } = this.props;*/
          /**{ type?: "button" | "submit" | "reset" | undefined }  */   
-        const {type = "button"} = this.props;
+        const {type = "button", onClick} = this.props;
          return (
-            <button  type={type}  className={style.botao}>
+            <button onClick={onClick}  type={type}  className={style.botao}>
 
                 {this.props.children}
             </button>
